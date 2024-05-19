@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>80</y>
+     <y>90</y>
      <width>640</width>
-     <height>271</height>
+     <height>261</height>
     </rect>
    </property>
    <property name="title">
@@ -29,12 +29,12 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Number</string>
+       <string>Номер</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QLabel" name="labelAccountNumber">
+     <widget class="QLabel" name="accountNumberLabel">
       <property name="text">
        <string/>
       </property>
@@ -43,12 +43,12 @@
     <item row="1" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Holder Name</string>
+       <string>Имя</string>
       </property>
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLabel" name="labelAccountHolderName">
+     <widget class="QLabel" name="accountHolderNameLabel">
       <property name="text">
        <string/>
       </property>
@@ -57,12 +57,12 @@
     <item row="2" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Balance</string>
+       <string>Баланс</string>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLabel" name="labelAccountBalance">
+     <widget class="QLabel" name="accountBalanceLabel">
       <property name="text">
        <string/>
       </property>
@@ -71,12 +71,12 @@
     <item row="3" column="0">
      <widget class="QLabel" name="label_6">
       <property name="text">
-       <string>Type</string>
+       <string>Тип</string>
       </property>
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QLabel" name="labelAccountType">
+     <widget class="QLabel" name="accountTypeLabel">
       <property name="text">
        <string/>
       </property>
@@ -85,40 +85,54 @@
     <item row="4" column="0">
      <widget class="QLabel" name="label_8">
       <property name="text">
-       <string>Opening Date</string>
+       <string>Дата открытия</string>
       </property>
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QLabel" name="labelOpeningDate">
+     <widget class="QLabel" name="openingDateLabel">
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
     <item row="5" column="0">
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Interest Rate</string>
+       <string>Валюта</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="labelInterestRate">
+    <item row="6" column="0">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>Кредит</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="creditLabel">
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="label_7">
+    <item row="5" column="1">
+     <widget class="QLabel" name="currencyLabel">
       <property name="text">
-       <string>Currency</string>
+       <string/>
       </property>
      </widget>
     </item>
-    <item row="6" column="1">
-     <widget class="QLabel" name="labelCurrency">
+    <item row="7" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Депозит</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QLabel" name="depositLabel">
       <property name="text">
        <string/>
       </property>
@@ -150,6 +164,19 @@
    </property>
    <property name="text">
     <string>Меню</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>10</y>
+     <width>331</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h1 style=&quot; margin-top:18px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:xx-large; font-weight:700;&quot;&gt;Информация о счете&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>

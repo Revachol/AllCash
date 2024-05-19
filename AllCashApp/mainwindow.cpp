@@ -1,11 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "account.h"
+#include "financemanager.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    accountWindow(nullptr)
+    accountWindow(nullptr),
+    creditsWindow(nullptr)
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
+
 }
 
 MainWindow::~MainWindow()
@@ -30,20 +32,35 @@ void MainWindow::on_pushButton_clicked()
 {
     hide();
 
-    // Создание окна Account с параметрами
-    accountWindow = new Account(this,
-                                "123456789",              // Номер счета
-                                "Иван Иванов",            // Имя владельца
-                                15000.75,                 // Баланс счета
-                                "Сберегательный",         // Тип счета
-                                QDate(2020, 5, 15),       // Дата открытия счета
-                                1.5,                      // Процентная ставка
-                                "RUB");                   // Валюта
+    // Установка данных счета в FinanceManager
+    FinanceManager& fm = FinanceManager::getInstance();
+    fm.setAccountDetails("123456789", "Иван Иванов", 15000.75, "Сберегательный",
+                         QDate(2020, 5, 15), "RUB", true, true);
+
+    // Создание окна Account
+    accountWindow = new Account(this);
 
     // Подключение сигнала закрытия окна Account к слоту для показа главного окна
     connect(accountWindow, &Account::accountWindowClosed, this, &MainWindow::showMainWindow);
 
-    accountWindow->show();  // Используем show() для немодального окна
+    accountWindow->show();
+}
+
+void MainWindow::on_pushButtonCredits_clicked()
+{
+    hide();
+
+    // Установка данных кредита в FinanceManager
+    FinanceManager& fm = FinanceManager::getInstance();
+    fm.setCreditDetails(20000.0, 3.5, 12, QDate(2021, 6, 1), QDate(2022, 6, 1));
+
+    // Создание окна Credits
+    creditsWindow = new Credits(this);
+
+    // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
+    connect(creditsWindow, &Credits::creditsWindowClosed, this, &MainWindow::showMainWindow);
+
+    creditsWindow->show();
 }
 
 void MainWindow::showMainWindow()
@@ -52,5 +69,9 @@ void MainWindow::showMainWindow()
     if (accountWindow) {
         accountWindow->deleteLater();  // Освободить память, когда окно Account будет закрыто
         accountWindow = nullptr;
+    }
+    if (creditsWindow) {
+        creditsWindow->deleteLater();  // Освободить память, когда окно Credits будет закрыто
+        creditsWindow = nullptr;
     }
 }

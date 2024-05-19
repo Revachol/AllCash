@@ -10,15 +10,21 @@ CONFIG += c++17
 
 SOURCES += \
     account.cpp \
+    credits.cpp \
+    financemanager.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     account.h \
+    credits.h \
+    financemanager.h \
     mainwindow.h
 
 FORMS += \
     account.ui \
+    credits.ui \
+    financemanager.ui \
     mainwindow.ui
 
 
