@@ -44,6 +44,11 @@ public:
     QDate getCreditStartDate() const;
     QDate getCreditEndDate() const;
 
+    void setDepositDetails(double depositSum,
+                           double depositRate);
+    double getDepositSum() const;
+    double getDepositRate() const;
+
 private:
     FinanceManager();  // Закрытый конструктор для реализации Singleton
     FinanceManager(const FinanceManager&) = delete;
@@ -65,6 +70,9 @@ private:
     int term;
     QDate startDate;
     QDate endDate;
+
+    double depositSum;
+    double depositRate;
 };
 
 #endif // FINANCEMANAGER_H

@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     account.cpp \
     credits.cpp \
+    deposit.cpp \
     financemanager.cpp \
     main.cpp \
     mainwindow.cpp
@@ -18,12 +19,14 @@ SOURCES += \
 HEADERS += \
     account.h \
     credits.h \
+    deposit.h \
     financemanager.h \
     mainwindow.h
 
 FORMS += \
     account.ui \
     credits.ui \
+    deposit.ui \
     financemanager.ui \
     mainwindow.ui
 

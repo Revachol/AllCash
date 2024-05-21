@@ -37,3 +37,9 @@ void Credits::closeEvent(QCloseEvent *event)
     emit creditsWindowClosed();
     QDialog::closeEvent(event);
 }
+
+void Credits::on_backButton_clicked()
+{
+    emit creditsWindowClosed();  // Эмитируем сигнал при нажатии кнопки "Назад"
+    close();  // Закрываем окно Account
+}

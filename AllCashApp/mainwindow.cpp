@@ -6,8 +6,15 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     accountWindow(nullptr),
-    creditsWindow(nullptr)
+    creditsWindow(nullptr),
+    depositWindow(nullptr)
 {
+    FinanceManager& fm = FinanceManager::getInstance();
+    fm.setAccountDetails("123456789", "Иван Иванов", 15000.75, "Сберегательный",
+                         QDate(2020, 5, 15), "RUB", true, false);
+    fm.setCreditDetails(20000.0, 3.5, 12, QDate(2021, 6, 1), QDate(2022, 6, 1));
+    fm.setDepositDetails(45000, 5);
+
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
     int w = ui->logo->width();
@@ -33,9 +40,9 @@ void MainWindow::on_pushButton_clicked()
     hide();
 
     // Установка данных счета в FinanceManager
-    FinanceManager& fm = FinanceManager::getInstance();
-    fm.setAccountDetails("123456789", "Иван Иванов", 15000.75, "Сберегательный",
-                         QDate(2020, 5, 15), "RUB", true, true);
+    // FinanceManager& fm = FinanceManager::getInstance();
+    // fm.setAccountDetails("123456789", "Иван Иванов", 15000.75, "Сберегательный",
+    //                      QDate(2020, 5, 15), "RUB", true, true);
 
     // Создание окна Account
     accountWindow = new Account(this);
@@ -51,8 +58,8 @@ void MainWindow::on_pushButtonCredits_clicked()
     hide();
 
     // Установка данных кредита в FinanceManager
-    FinanceManager& fm = FinanceManager::getInstance();
-    fm.setCreditDetails(20000.0, 3.5, 12, QDate(2021, 6, 1), QDate(2022, 6, 1));
+    // FinanceManager& fm = FinanceManager::getInstance();
+    // fm.setCreditDetails(20000.0, 3.5, 12, QDate(2021, 6, 1), QDate(2022, 6, 1));
 
     // Создание окна Credits
     creditsWindow = new Credits(this);
@@ -61,6 +68,10 @@ void MainWindow::on_pushButtonCredits_clicked()
     connect(creditsWindow, &Credits::creditsWindowClosed, this, &MainWindow::showMainWindow);
 
     creditsWindow->show();
+}
+
+void MainWindow::on_pushButton_2_clicked(){
+    on_pushButtonCredits_clicked();
 }
 
 void MainWindow::showMainWindow()
@@ -75,3 +86,21 @@ void MainWindow::showMainWindow()
         creditsWindow = nullptr;
     }
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    hide();
+
+    // Установка данных кредита в FinanceManager
+    // FinanceManager& fm = FinanceManager::getInstance();
+    // fm.setCreditDetails(20000.0, 3.5, 12, QDate(2021, 6, 1), QDate(2022, 6, 1));
+
+    // Создание окна Credits
+    depositWindow = new Deposit(this);
+
+    // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
+    connect(depositWindow, &Deposit::depositWindowClosed, this, &MainWindow::showMainWindow);
+
+    depositWindow->show();
+}
+

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "account.h"
 #include "credits.h"
+#include "deposit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,10 +25,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     Account *accountWindow;
     Credits *creditsWindow;
+    Deposit *depositWindow;
 };
 
 #endif // MAINWINDOW_H

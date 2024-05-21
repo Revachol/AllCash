@@ -18,6 +18,9 @@ public:
 signals:
     void creditsWindowClosed();
 
+private slots:
+    void on_backButton_clicked();
+
 protected:
     void closeEvent(QCloseEvent *event) override;
 

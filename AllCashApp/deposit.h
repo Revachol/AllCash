@@ -1,24 +1,24 @@
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+#ifndef DEPOSIT_H
+#define DEPOSIT_H
 
 #include <QDialog>
 #include <QString>
 #include <QDate>
 
 namespace Ui {
-class Account;
+class Deposit;
 }
 
-class Account : public QDialog
+class Deposit : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Account(QWidget *parent = nullptr);
-    ~Account();
+    explicit Deposit(QWidget *parent = nullptr);
+    ~Deposit();
 
 signals:
-    void accountWindowClosed();
+    void depositWindowClosed();
 
 private slots:
     void on_backButton_clicked();
@@ -27,7 +27,7 @@ protected:
     void closeEvent(QCloseEvent *event) override;
 
 private:
-    Ui::Account *ui;
+    Ui::Deposit *ui;
 };
 
-#endif // ACCOUNT_H
+#endif // Deposit
