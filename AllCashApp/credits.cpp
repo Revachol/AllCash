@@ -18,11 +18,11 @@ Credits::Credits(QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
-    // Получение данных из FinanceManager и установка в UI
+
     FinanceManager& fm = FinanceManager::getInstance();
-    ui->creditAmountLabel->setText(QString::number(fm.getCreditAmount()));
-    ui->interestRateLabel->setText(QString::number(fm.getInterestRate()));
-    ui->termLabel->setText(QString::number(fm.getTerm()));
+    ui->creditAmountLabel->setText(QString::number(fm.getCreditAmount(), 'f', 0) + " рублей");
+    ui->interestRateLabel->setText(QString::number(fm.getInterestRate()) + "%");
+    ui->termLabel->setText(QString::number(fm.getTerm()) + " лет");
     ui->startDateLabel->setText(fm.getCreditStartDate().toString());
     ui->endDateLabel->setText(fm.getCreditEndDate().toString());
 }
@@ -40,6 +40,6 @@ void Credits::closeEvent(QCloseEvent *event)
 
 void Credits::on_backButton_clicked()
 {
-    emit creditsWindowClosed();  // Эмитируем сигнал при нажатии кнопки "Назад"
-    close();  // Закрываем окно Account
+    emit creditsWindowClosed();
+    close();
 }

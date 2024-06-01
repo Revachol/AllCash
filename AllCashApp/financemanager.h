@@ -65,7 +65,7 @@ private:
     bool deposit;
 
     // Данные кредита
-    double creditAmount;
+    long long int creditAmount;
     double interestRate;
     int term;
     QDate startDate;

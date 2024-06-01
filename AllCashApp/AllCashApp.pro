@@ -14,21 +14,24 @@ SOURCES += \
     deposit.cpp \
     financemanager.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    opencredit.cpp
 
 HEADERS += \
     account.h \
     credits.h \
     deposit.h \
     financemanager.h \
-    mainwindow.h
+    mainwindow.h \
+    opencredit.h
 
 FORMS += \
     account.ui \
     credits.ui \
     deposit.ui \
     financemanager.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    opencredit.ui
 
 
 # Default rules for deployment.
