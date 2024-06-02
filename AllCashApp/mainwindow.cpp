@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent) :
     FinanceManager& fm = FinanceManager::getInstance();
     fm.setAccountDetails("123456789", "Иван Иванов", 15000.75, "Сберегательный",
                          QDate(2020, 5, 15), "RUB", false, false);
-    fm.setDepositDetails(45000, 5);
 
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -111,6 +110,34 @@ void MainWindow::showMainWindow()
 void MainWindow::on_pushButton_3_clicked()
 {
     hide();
+    depositWindow = new Deposit(this);
+    FinanceManager& fm = FinanceManager::getInstance();
+    if (fm.isDeposit()) {
+
+        // Создание окна Credits
+        depositWindow = new Deposit(this);
+
+        // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
+        connect(depositWindow, &Deposit::depositWindowClosed, this, &MainWindow::showMainWindow);
+
+        depositWindow->show();
+    } else {
+        // Создание окна для открытия кредита
+        openDepositWindow = new OpenDeposit(this);
+
+        // Подключение сигнала открытия кредита к слоту для показа окна Credits
+        connect(openDepositWindow, &OpenDeposit::openDepositWindowClosed, this, &MainWindow::showDepositWindow);
+
+        openDepositWindow->show();
+    }
+}
+
+void MainWindow::showDepositWindow()
+{
+    if (openDepositWindow) {
+        openDepositWindow->deleteLater();
+        openDepositWindow = nullptr;
+    }
 
     depositWindow = new Deposit(this);
 
@@ -118,4 +145,3 @@ void MainWindow::on_pushButton_3_clicked()
 
     depositWindow->show();
 }
-

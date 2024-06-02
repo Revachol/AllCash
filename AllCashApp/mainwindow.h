@@ -6,6 +6,7 @@
 #include "credits.h"
 #include "deposit.h"
 #include "opencredit.h"
+#include "opendeposit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +25,7 @@ private slots:
     void on_pushButtonCredits_clicked();  // Слот для кнопки открытия окна Credits
     void showMainWindow();  // Слот для показа главного окна
     void showCreditsWindow();
+    void showDepositWindow();
 
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
@@ -35,6 +37,7 @@ private:
     Credits *creditsWindow;
     Deposit *depositWindow;
     OpenCredit *openCreditWindow;
+    OpenDeposit *openDepositWindow;
 };
 
 #endif // MAINWINDOW_H

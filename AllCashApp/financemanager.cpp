@@ -52,18 +52,30 @@ void FinanceManager::setCreditDetails(double creditAmount,
     this->endDate = endDate;
 }
 
-// Методы для управления депозитом
-void FinanceManager::setDepositDetails(double depositSum,
-                                      double depositRate)
-{
-    this->depositSum = depositSum;
-    this->depositRate = depositRate;
-}
-
 double FinanceManager::getCreditAmount() const { return creditAmount; }
 double FinanceManager::getInterestRate() const { return interestRate; }
 int FinanceManager::getTerm() const { return term; }
 QDate FinanceManager::getCreditStartDate() const { return startDate; }
 QDate FinanceManager::getCreditEndDate() const { return endDate; }
-double FinanceManager::getDepositSum() const { return depositSum; }
+
+// Методы для управления депозитом
+void FinanceManager::setDepositDetails(long long int depositSum,
+                       double depositRate,
+                       int depositTerm,
+                       bool non_refillable,
+                       QDate depositStartDate,
+                       QDate depositEndDate){
+    this->depositSum = depositSum;
+    this->depositRate = depositRate;
+    this->depositTerm = depositTerm;
+    this->non_refillable = non_refillable;
+    this->depositStartDate = depositStartDate;
+    this->depositEndDate = depositEndDate;
+}
+
+long long int FinanceManager::getDepositSum() const { return depositSum; }
 double FinanceManager::getDepositRate() const { return depositRate; }
+int FinanceManager::getDepositTerm() const { return depositTerm; }
+bool FinanceManager::getDepositCheck() const{ return non_refillable ;}
+QDate FinanceManager::getDepositStartDate() const { return depositStartDate; }
+QDate FinanceManager::getDepositEndDate() const{ return depositEndDate; }

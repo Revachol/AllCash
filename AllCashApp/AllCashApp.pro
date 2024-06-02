@@ -15,7 +15,8 @@ SOURCES += \
     financemanager.cpp \
     main.cpp \
     mainwindow.cpp \
-    opencredit.cpp
+    opencredit.cpp \
+    opendeposit.cpp
 
 HEADERS += \
     account.h \
@@ -23,7 +24,8 @@ HEADERS += \
     deposit.h \
     financemanager.h \
     mainwindow.h \
-    opencredit.h
+    opencredit.h \
+    opendeposit.h
 
 FORMS += \
     account.ui \
@@ -31,7 +33,8 @@ FORMS += \
     deposit.ui \
     financemanager.ui \
     mainwindow.ui \
-    opencredit.ui
+    opencredit.ui \
+    opendeposit.ui
 
 
 # Default rules for deployment.

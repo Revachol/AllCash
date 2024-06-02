@@ -20,9 +20,12 @@ Deposit::Deposit(QWidget *parent) :
     this->setPalette(palette);
     // Получение данных из FinanceManager и установка в UI
     FinanceManager& fm = FinanceManager::getInstance();
-    ui->depositSumLabel->setText(QString::number(fm.getDepositSum()));
-    ui->depositRateLabel->setText(QString::number(fm.getDepositRate()));
-
+    ui->depositSumLabel->setText(QString::number(fm.getDepositSum())+ " рублей");
+    ui->depositRateLabel->setText(QString::number(fm.getDepositRate())+ "%");
+    ui->depositTermLabel->setText(QString::number(fm.getDepositTerm())+ " лет");
+    ui->depositStartLabel->setText(fm.getDepositStartDate().toString());
+    ui->depositEndLabel->setText(fm.getDepositEndDate().toString());
+    ui->depositCheckLabel->setText(fm.getDepositCheck() ? "Yes" : "No");
 }
 
 Deposit::~Deposit()

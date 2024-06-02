@@ -44,10 +44,19 @@ public:
     QDate getCreditStartDate() const;
     QDate getCreditEndDate() const;
 
-    void setDepositDetails(double depositSum,
-                           double depositRate);
-    double getDepositSum() const;
+    // Методы для управления вкладами
+    void setDepositDetails(long long int depositSum,
+                double depositRate,
+                int depositTerm,
+                bool non_refillable,
+                QDate depositStartDate,
+                QDate depositEndDate);
+    long long int getDepositSum() const;
     double getDepositRate() const;
+    int getDepositTerm() const;
+    bool getDepositCheck() const;
+    QDate getDepositStartDate() const;
+    QDate getDepositEndDate() const;
 
 private:
     FinanceManager();  // Закрытый конструктор для реализации Singleton
@@ -71,8 +80,13 @@ private:
     QDate startDate;
     QDate endDate;
 
-    double depositSum;
+    //Данные вклада
+    long long int depositSum;
     double depositRate;
+    int depositTerm;
+    bool non_refillable;
+    QDate depositStartDate;
+    QDate depositEndDate;
 };
 
 #endif // FINANCEMANAGER_H
