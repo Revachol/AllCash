@@ -25,16 +25,17 @@ HEADERS += \
     Main/financemanager.h \
     Main/mainwindow.h \
     Credit/opencredit.h \
-    Deposit/opendeposit.h
+    Deposit/opendeposit.h \
+    FactoryMethod/factorymethod.h \
+    FactoryMethod/viewfactory.h
 
 FORMS += \
     Account/account.ui \
     Credit/credits.ui \
     Deposit/deposit.ui \
-    Main/financemanager.ui \
     Main/mainwindow.ui \
     Credit/opencredit.ui \
-    Deposit/opendeposit.ui
+    Deposit/opendeposit.ui \
 
 
 # Default rules for deployment.

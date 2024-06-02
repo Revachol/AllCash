@@ -7,6 +7,7 @@
 #include "../Deposit/deposit.h"
 #include "../Credit/opencredit.h"
 #include "../Deposit/opendeposit.h"
+#include "../FactoryMethod/factorymethod.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,6 +39,8 @@ private:
     Deposit *depositWindow;
     OpenCredit *openCreditWindow;
     OpenDeposit *openDepositWindow;
+    FactoryMethod *factory;
+
 };
 
 #endif // MAINWINDOW_H

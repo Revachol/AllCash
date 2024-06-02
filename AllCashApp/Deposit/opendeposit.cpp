@@ -50,6 +50,7 @@ void OpenDeposit::on_depositOpenButton_clicked()
     manager.setDepositStartDate(QDate(2022,6,1));
     manager.setDepositEndDate(QDate(2022 + depositTerm, 6, 1));
     manager.setDepositCheck(depositCheck);
+    manager.setDepositOpened(true);
 
     close();
 }
