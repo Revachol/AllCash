@@ -2,6 +2,7 @@
 #define OPENDEPOSIT_H
 
 #include <QDialog>
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class OpenDeposit;
@@ -22,7 +23,6 @@ signals:
 private slots:
     void on_openDepositButton_clicked();
     void on_backButton_clicked();
-
     void on_depositOpenButton_clicked();
 
 protected:
@@ -33,6 +33,7 @@ signals:
 
 private:
     Ui::OpenDeposit *ui;
+    FinanceManager &manager;
 };
 
 #endif // OPENDEPOSIT_H

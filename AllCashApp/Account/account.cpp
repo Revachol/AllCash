@@ -1,10 +1,10 @@
 #include "account.h"
 #include "ui_account.h"
-#include "../Main/financemanager.h"
 
 Account::Account(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Account)
+    ui(new Ui::Account),
+    manager(FinanceManager::getInstance())
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -18,21 +18,25 @@ Account::Account(QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
-    // Получение данных из FinanceManager и установка в UI
-    FinanceManager& fm = FinanceManager::getInstance();
-    ui->accountNumberLabel->setText(fm.getAccountNumber());
-    ui->accountHolderNameLabel->setText(fm.getAccountHolderName());
-    ui->accountBalanceLabel->setText(QString::number(fm.getAccountBalance()));
-    ui->accountTypeLabel->setText(fm.getAccountType());
-    ui->openingDateLabel->setText(fm.getOpeningDate().toString());
-    ui->currencyLabel->setText(fm.getCurrency());
-    ui->creditLabel->setText(fm.isCredit() ? "Yes" : "No");
-    ui->depositLabel->setText(fm.isDeposit() ? "Yes" : "No");
+
+    connect(&manager, &FinanceManager::dataChanged, this, &Account::updateView);
+    updateView();
 }
 
 Account::~Account()
 {
     delete ui;
+}
+
+void Account::updateView() {
+    ui->accountNumberLabel->setText(manager.getAccountNumber());
+    ui->accountHolderNameLabel->setText(manager.getAccountHolderName());
+    ui->accountBalanceLabel->setText(QString::number(manager.getAccountBalance()));
+    ui->accountTypeLabel->setText(manager.getAccountType());
+    ui->openingDateLabel->setText(manager.getOpeningDate().toString());
+    ui->currencyLabel->setText(manager.getCurrency());
+    ui->creditLabel->setText(manager.isCreditOpened() ? "Yes" : "No");
+    ui->depositLabel->setText(manager.isDepositOpened() ? "Yes" : "No");
 }
 
 void Account::closeEvent(QCloseEvent *event)

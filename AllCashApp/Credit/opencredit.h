@@ -2,6 +2,7 @@
 #define OPENCREDIT_H
 
 #include <QDialog>
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class OpenCredit;
@@ -22,8 +23,8 @@ private slots:
     void on_openCreditButton_clicked();
     void on_creditAmountSlider_valueChanged(int value);
     void on_creditTermSlider_valueChanged(int value);
-
     void on_backButton_clicked();
+    void updateView();
 
 protected:
     void closeEvent(QCloseEvent *event) override;
@@ -33,6 +34,7 @@ signals:
 
 private:
     Ui::OpenCredit *ui;
+    FinanceManager &manager;
 };
 
 #endif // OPENCREDIT_H

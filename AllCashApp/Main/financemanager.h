@@ -12,54 +12,69 @@ class FinanceManager : public QObject
 public:
     static FinanceManager& getInstance();
 
-    // Методы для управления счетами
-    void setAccountDetails(const QString &accountNumber,
-                           const QString &accountHolderName,
-                           double accountBalance,
-                           const QString &accountType,
-                           const QDate &openingDate,
-                           const QString &currency,
-                           bool credit,
-                           bool deposit);
-
     QString getAccountNumber() const;
+    void setAccountNumber(const QString &value);
+
     QString getAccountHolderName() const;
+    void setAccountHolderName(const QString &value);
+
     double getAccountBalance() const;
+    void setAccountBalance(double value);
+
     QString getAccountType() const;
+    void setAccountType(const QString &value);
+
     QDate getOpeningDate() const;
+    void setOpeningDate(const QDate &value);
+
     QString getCurrency() const;
-    bool isCredit() const;
-    bool isDeposit() const;
+    void setCurrency(const QString &value);
 
-    // Методы для управления кредитами
-    void setCreditDetails(double creditAmount,
-                          double interestRate,
-                          int term,
-                          const QDate &startDate,
-                          const QDate &endDate);
+    //Кредит
+    bool isCreditOpened() const;
+    void setCreditOpened(bool value);
 
-    double getCreditAmount() const;
+    long long int getCreditAmount() const;
+    void setCreditAmount(long long int value);
+
     double getInterestRate() const;
-    int getTerm() const;
+    void setInterestRate(double value);
+
+    int getCreditTerm() const;
+    void setCreditTerm(int value);
+
     QDate getCreditStartDate() const;
+    void setCreditStartDate(const QDate &value);
+
     QDate getCreditEndDate() const;
+    void setCreditEndDate(const QDate &value);
 
-    // Методы для управления вкладами
-    void setDepositDetails(long long int depositSum,
-                double depositRate,
-                int depositTerm,
-                bool non_refillable,
-                QDate depositStartDate,
-                QDate depositEndDate);
+    //Депозит
+    bool isDepositOpened() const;
+    void setDepositOpened(bool value);
+
     long long int getDepositSum() const;
-    double getDepositRate() const;
-    int getDepositTerm() const;
-    bool getDepositCheck() const;
-    QDate getDepositStartDate() const;
-    QDate getDepositEndDate() const;
+    void setDepositSum(long long int value);
 
+    double getDepositRate() const;
+    void setDepositRate(double value);
+
+    int getDepositTerm() const;
+    void setDepositTerm(int value);
+
+    bool getDepositCheck() const;
+    void setDepositCheck(bool value);
+
+    QDate getDepositStartDate() const;
+    void setDepositStartDate(const QDate &value);
+
+    QDate getDepositEndDate() const;
+    void setDepositEndDate(const QDate &value);
+
+signals:
+    void dataChanged();
 private:
-    FinanceManager();  // Закрытый конструктор для реализации Singleton
+    FinanceManager();
     FinanceManager(const FinanceManager&) = delete;
     FinanceManager& operator=(const FinanceManager&) = delete;
 
@@ -70,8 +85,8 @@ private:
     QString accountType;
     QDate openingDate;
     QString currency;
-    bool credit;
-    bool deposit;
+    bool creditOpened;
+    bool depositOpened;
 
     // Данные кредита
     long long int creditAmount;

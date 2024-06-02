@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QString>
 #include <QDate>
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class Account;
@@ -21,6 +22,7 @@ signals:
     void accountWindowClosed();
 
 private slots:
+    void updateView();
     void on_backButton_clicked();
 
 protected:
@@ -28,6 +30,7 @@ protected:
 
 private:
     Ui::Account *ui;
+    FinanceManager &manager;
 };
 
 #endif // ACCOUNT_H

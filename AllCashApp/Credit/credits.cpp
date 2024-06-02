@@ -1,10 +1,10 @@
 #include "credits.h"
 #include "ui_credits.h"
-#include "../Main/financemanager.h"
 
 Credits::Credits(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Credits)
+    ui(new Ui::Credits),
+    manager(FinanceManager::getInstance())
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -19,17 +19,21 @@ Credits::Credits(QWidget *parent) :
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    FinanceManager& fm = FinanceManager::getInstance();
-    ui->creditAmountLabel->setText(QString::number(fm.getCreditAmount(), 'f', 0) + " рублей");
-    ui->interestRateLabel->setText(QString::number(fm.getInterestRate()) + "%");
-    ui->termLabel->setText(QString::number(fm.getTerm()) + " лет");
-    ui->startDateLabel->setText(fm.getCreditStartDate().toString());
-    ui->endDateLabel->setText(fm.getCreditEndDate().toString());
+    connect(&manager, &FinanceManager::dataChanged, this, &Credits::updateView);
+    updateView();
 }
 
 Credits::~Credits()
 {
     delete ui;
+}
+
+void Credits::updateView() {
+    ui->creditAmountLabel->setText(QString::number(manager.getCreditAmount(), 'f', 0) + " рублей");
+    ui->interestRateLabel->setText(QString::number(manager.getInterestRate()) + "%");
+    ui->termLabel->setText(QString::number(manager.getCreditTerm()) + " лет");
+    ui->startDateLabel->setText(manager.getCreditStartDate().toString());
+    ui->endDateLabel->setText(manager.getCreditEndDate().toString());
 }
 
 void Credits::closeEvent(QCloseEvent *event)

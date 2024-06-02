@@ -1,11 +1,11 @@
 #include "opencredit.h"
 #include "ui_opencredit.h"
-#include "../Main/financemanager.h"
 
 
 OpenCredit::OpenCredit(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::OpenCredit)
+    ui(new Ui::OpenCredit),
+    manager(FinanceManager::getInstance())
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -20,16 +20,21 @@ OpenCredit::OpenCredit(QWidget *parent) :
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
 
-    ui->creditAmountLabel->setText(QString::number(ui->creditAmountSlider->value()));
-    ui->creditTermLabel->setText(QString::number(ui->creditTermSlider->value()));
-
-    connect(ui->creditAmountSlider, &QSlider::valueChanged, this, &OpenCredit::on_creditAmountSlider_valueChanged);
-    connect(ui->creditTermSlider, &QSlider::valueChanged, this, &OpenCredit::on_creditTermSlider_valueChanged);
+    connect(&manager, &FinanceManager::dataChanged, this, &OpenCredit::updateView);
+    updateView();
 }
 
 OpenCredit::~OpenCredit()
 {
     delete ui;
+}
+
+void OpenCredit::updateView(){
+    ui->creditAmountLabel->setText(QString::number(ui->creditAmountSlider->value()));
+    ui->creditTermLabel->setText(QString::number(ui->creditTermSlider->value()));
+
+    connect(ui->creditAmountSlider, &QSlider::valueChanged, this, &OpenCredit::on_creditAmountSlider_valueChanged);
+    connect(ui->creditTermSlider, &QSlider::valueChanged, this, &OpenCredit::on_creditTermSlider_valueChanged);
 }
 
 void OpenCredit::closeEvent(QCloseEvent *event)
@@ -49,10 +54,12 @@ void OpenCredit::on_openCreditButton_clicked()
     long long int creditAmount = ui->creditAmountSlider->value();
     int creditTerm = ui->creditTermSlider->value();
 
-    FinanceManager& fm = FinanceManager::getInstance();
-    fm.setCreditDetails(creditAmount, 3.5, creditTerm, QDate(2021, 6, 1), QDate(2021 + creditTerm, 6, 1));
-    fm.setAccountDetails(fm.getAccountNumber(), fm.getAccountHolderName(), fm.getAccountBalance(),
-                         fm.getAccountType(), fm.getOpeningDate(), fm.getCurrency(), true, fm.isDeposit());
+    manager.setCreditAmount(creditAmount);
+    manager.setCreditTerm(creditTerm);
+    manager.setInterestRate(3.5);
+    manager.setCreditStartDate(QDate(2022,6,1));
+    manager.setCreditEndDate(QDate(2022 + creditTerm, 6, 1));
+    manager.setCreditOpened(true);
 
     close();
 }

@@ -1,11 +1,11 @@
 #include "opendeposit.h"
 #include "ui_opendeposit.h"
-#include "Main/financemanager.h"
 
 
 OpenDeposit::OpenDeposit(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::OpenDeposit)
+    ui(new Ui::OpenDeposit),
+    manager(FinanceManager::getInstance())
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -42,11 +42,15 @@ void OpenDeposit::on_depositOpenButton_clicked()
 {
     long long int depositAmount = ui->depositAmountInput->text().toLongLong();
     int depositTerm = ui->depositTermInput->text().toInt();
+    bool depositCheck = ui->depositCheck->isChecked();
 
-    FinanceManager& fm = FinanceManager::getInstance();
-    fm.setDepositDetails(depositAmount, 3.5, depositTerm, false, QDate(2021, 6, 1), QDate(2021 + depositTerm, 6, 1));
-    fm.setAccountDetails(fm.getAccountNumber(), fm.getAccountHolderName(), fm.getAccountBalance(),
-                         fm.getAccountType(), fm.getOpeningDate(), fm.getCurrency(), fm.isCredit(), true);
+    manager.setDepositSum(depositAmount);
+    manager.setDepositTerm(depositTerm);
+    manager.setDepositRate(12);
+    manager.setDepositStartDate(QDate(2022,6,1));
+    manager.setDepositEndDate(QDate(2022 + depositTerm, 6, 1));
+    manager.setDepositCheck(depositCheck);
 
     close();
 }
+

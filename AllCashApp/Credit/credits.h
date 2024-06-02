@@ -2,6 +2,8 @@
 #define CREDITS_H
 
 #include <QDialog>
+#include <QDate>
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class Credits;
@@ -16,6 +18,7 @@ public:
     ~Credits();
 
 signals:
+    void updateView();
     void creditsWindowClosed();
 
 private slots:
@@ -26,6 +29,7 @@ protected:
 
 private:
     Ui::Credits *ui;
+    FinanceManager &manager;
 };
 
 #endif // CREDITS_H

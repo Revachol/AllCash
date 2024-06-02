@@ -8,11 +8,18 @@ MainWindow::MainWindow(QWidget *parent) :
     accountWindow(nullptr),
     creditsWindow(nullptr),
     depositWindow(nullptr),
-    openCreditWindow(nullptr)
+    openCreditWindow(nullptr),
+    openDepositWindow(nullptr)
 {
     FinanceManager& fm = FinanceManager::getInstance();
-    fm.setAccountDetails("123456789", "Иван Иванов", 15000.75, "Сберегательный",
-                         QDate(2020, 5, 15), "RUB", false, false);
+    fm.setAccountNumber("123456789");
+    fm.setAccountHolderName("Иван Иванов");
+    fm.setAccountBalance(15000.75);
+    fm.setAccountType("Сберегательный");
+    fm.setOpeningDate(QDate(2020, 5, 15));
+    fm.setCurrency("RUB");
+    fm.setCreditOpened(false);
+    fm.setDepositOpened(false);
 
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -44,6 +51,7 @@ void MainWindow::on_pushButton_clicked()
     // Подключение сигнала закрытия окна Account к слоту для показа главного окна
     connect(accountWindow, &Account::accountWindowClosed, this, &MainWindow::showMainWindow);
 
+    // setCentralWidget(accountWindow);
     accountWindow->show();
 }
 
@@ -52,7 +60,7 @@ void MainWindow::on_pushButtonCredits_clicked()
     hide();
     creditsWindow = new Credits(this);
     FinanceManager& fm = FinanceManager::getInstance();
-    if (fm.isCredit()) {
+    if (fm.isCreditOpened()) {
 
         // Создание окна Credits
         creditsWindow = new Credits(this);
@@ -60,6 +68,7 @@ void MainWindow::on_pushButtonCredits_clicked()
         // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
         connect(creditsWindow, &Credits::creditsWindowClosed, this, &MainWindow::showMainWindow);
 
+        // setCentralWidget(creditsWindow);
         creditsWindow->show();
     } else {
         // Создание окна для открытия кредита
@@ -68,6 +77,7 @@ void MainWindow::on_pushButtonCredits_clicked()
         // Подключение сигнала открытия кредита к слоту для показа окна Credits
         connect(openCreditWindow, &OpenCredit::openCreditsWindowClosed, this, &MainWindow::showCreditsWindow);
 
+        // setCentralWidget(creditsWindow);
         openCreditWindow->show();
     }
 }
@@ -83,6 +93,7 @@ void MainWindow::showCreditsWindow()
 
     connect(creditsWindow, &Credits::creditsWindowClosed, this, &MainWindow::showMainWindow);
 
+    // setCentralWidget(creditsWindow);
     creditsWindow->show();
 }
 
@@ -105,6 +116,10 @@ void MainWindow::showMainWindow()
         openCreditWindow->deleteLater();
         openCreditWindow = nullptr;
     }
+    if (openDepositWindow) {
+        openDepositWindow->deleteLater();
+        openDepositWindow = nullptr;
+    }
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -112,7 +127,7 @@ void MainWindow::on_pushButton_3_clicked()
     hide();
     depositWindow = new Deposit(this);
     FinanceManager& fm = FinanceManager::getInstance();
-    if (fm.isDeposit()) {
+    if (fm.isDepositOpened()) {
 
         // Создание окна Credits
         depositWindow = new Deposit(this);
@@ -120,6 +135,7 @@ void MainWindow::on_pushButton_3_clicked()
         // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
         connect(depositWindow, &Deposit::depositWindowClosed, this, &MainWindow::showMainWindow);
 
+        setCentralWidget(depositWindow);
         depositWindow->show();
     } else {
         // Создание окна для открытия кредита
@@ -128,6 +144,7 @@ void MainWindow::on_pushButton_3_clicked()
         // Подключение сигнала открытия кредита к слоту для показа окна Credits
         connect(openDepositWindow, &OpenDeposit::openDepositWindowClosed, this, &MainWindow::showDepositWindow);
 
+        // setCentralWidget(openDepositWindow);
         openDepositWindow->show();
     }
 }
@@ -143,5 +160,6 @@ void MainWindow::showDepositWindow()
 
     connect(depositWindow, &Deposit::depositWindowClosed, this, &MainWindow::showMainWindow);
 
+    // setCentralWidget(depositWindow);
     depositWindow->show();
 }

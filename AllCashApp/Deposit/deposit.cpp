@@ -4,7 +4,8 @@
 
 Deposit::Deposit(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Deposit)
+    ui(new Ui::Deposit),
+    manager(FinanceManager::getInstance())
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -18,19 +19,23 @@ Deposit::Deposit(QWidget *parent) :
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
     this->setPalette(palette);
-    // Получение данных из FinanceManager и установка в UI
-    FinanceManager& fm = FinanceManager::getInstance();
-    ui->depositSumLabel->setText(QString::number(fm.getDepositSum())+ " рублей");
-    ui->depositRateLabel->setText(QString::number(fm.getDepositRate())+ "%");
-    ui->depositTermLabel->setText(QString::number(fm.getDepositTerm())+ " лет");
-    ui->depositStartLabel->setText(fm.getDepositStartDate().toString());
-    ui->depositEndLabel->setText(fm.getDepositEndDate().toString());
-    ui->depositCheckLabel->setText(fm.getDepositCheck() ? "Yes" : "No");
+
+    connect(&manager, &FinanceManager::dataChanged, this, &Deposit::updateView);
+    updateView();
 }
 
 Deposit::~Deposit()
 {
     delete ui;
+}
+
+void Deposit::updateView() {
+    ui->depositSumLabel->setText(QString::number(manager.getDepositSum())+ " рублей");
+    ui->depositRateLabel->setText(QString::number(manager.getDepositRate())+ "%");
+    ui->depositTermLabel->setText(QString::number(manager.getDepositTerm())+ " лет");
+    ui->depositStartLabel->setText(manager.getDepositStartDate().toString());
+    ui->depositEndLabel->setText(manager.getDepositEndDate().toString());
+    ui->depositCheckLabel->setText(manager.getDepositCheck() ? "Yes" : "No");
 }
 
 void Deposit::closeEvent(QCloseEvent *event)
