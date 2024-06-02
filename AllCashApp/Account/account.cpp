@@ -1,6 +1,6 @@
 #include "account.h"
 #include "ui_account.h"
-#include "financemanager.h"
+#include "../Main/financemanager.h"
 
 Account::Account(QWidget *parent) :
     QDialog(parent),

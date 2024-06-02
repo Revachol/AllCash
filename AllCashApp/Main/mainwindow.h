@@ -2,11 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "account.h"
-#include "credits.h"
-#include "deposit.h"
-#include "opencredit.h"
-#include "opendeposit.h"
+#include "../Account/account.h"
+#include "../Credit/credits.h"
+#include "../Deposit/deposit.h"
+#include "../Credit/opencredit.h"
+#include "../Deposit/opendeposit.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -9,32 +9,32 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    account.cpp \
-    credits.cpp \
-    deposit.cpp \
-    financemanager.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    opencredit.cpp \
-    opendeposit.cpp
+    Account/account.cpp \
+    Credit/credits.cpp \
+    Deposit/deposit.cpp \
+    Main/financemanager.cpp \
+    Main/main.cpp \
+    Main/mainwindow.cpp \
+    Credit/opencredit.cpp \
+    Deposit/opendeposit.cpp
 
 HEADERS += \
-    account.h \
-    credits.h \
-    deposit.h \
-    financemanager.h \
-    mainwindow.h \
-    opencredit.h \
-    opendeposit.h
+    Account/account.h \
+    Credit/credits.h \
+    Deposit/deposit.h \
+    Main/financemanager.h \
+    Main/mainwindow.h \
+    Credit/opencredit.h \
+    Deposit/opendeposit.h
 
 FORMS += \
-    account.ui \
-    credits.ui \
-    deposit.ui \
-    financemanager.ui \
-    mainwindow.ui \
-    opencredit.ui \
-    opendeposit.ui
+    Account/account.ui \
+    Credit/credits.ui \
+    Deposit/deposit.ui \
+    Main/financemanager.ui \
+    Main/mainwindow.ui \
+    Credit/opencredit.ui \
+    Deposit/opendeposit.ui
 
 
 # Default rules for deployment.

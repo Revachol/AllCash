@@ -1,6 +1,6 @@
 #include "credits.h"
 #include "ui_credits.h"
-#include "financemanager.h"
+#include "../Main/financemanager.h"
 
 Credits::Credits(QWidget *parent) :
     QDialog(parent),

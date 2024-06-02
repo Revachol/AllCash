@@ -1,6 +1,6 @@
 #include "opencredit.h"
 #include "ui_opencredit.h"
-#include "financemanager.h"
+#include "../Main/financemanager.h"
 
 
 OpenCredit::OpenCredit(QWidget *parent) :

@@ -1,6 +1,6 @@
 #include "deposit.h"
 #include "ui_deposit.h"
-#include "financemanager.h"
+#include "Main/financemanager.h"
 
 Deposit::Deposit(QWidget *parent) :
     QDialog(parent),

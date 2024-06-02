@@ -1,6 +1,6 @@
 #include "opendeposit.h"
 #include "ui_opendeposit.h"
-#include "financemanager.h"
+#include "Main/financemanager.h"
 
 
 OpenDeposit::OpenDeposit(QWidget *parent) :
