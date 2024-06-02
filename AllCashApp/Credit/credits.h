@@ -18,10 +18,10 @@ class Credits : public QDialog {
   ~Credits();
 
  signals:
-  void updateView();
   void creditsWindowClosed();
 
  private slots:
+  void updateView();
   void on_backButton_clicked();
 
  protected:
