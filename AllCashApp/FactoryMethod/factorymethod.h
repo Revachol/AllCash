@@ -9,7 +9,7 @@
 #include "viewfactory.h"
 
 class FactoryMethod : public ViewFactory {
-public:
+ public:
   Account *createAccount(QWidget *parent) override {
     return new Account(parent);
   }
@@ -31,4 +31,4 @@ public:
   }
 };
 
-#endif // FACTORYMETHOD_H
+#endif  // FACTORYMETHOD_H

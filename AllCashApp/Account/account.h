@@ -1,10 +1,11 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
-#include "../Main/financemanager.h"
 #include <QDate>
 #include <QDialog>
 #include <QString>
+
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class Account;
@@ -13,23 +14,23 @@ class Account;
 class Account : public QDialog {
   Q_OBJECT
 
-public:
+ public:
   explicit Account(QWidget *parent = nullptr);
   ~Account();
 
-signals:
+ signals:
   void accountWindowClosed();
 
-private slots:
+ private slots:
   void updateView();
   void on_backButton_clicked();
 
-protected:
+ protected:
   void closeEvent(QCloseEvent *event) override;
 
-private:
+ private:
   Ui::Account *ui;
   FinanceManager &manager;
 };
 
-#endif // ACCOUNT_H
+#endif  // ACCOUNT_H

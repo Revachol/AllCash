@@ -1,8 +1,10 @@
 #include "credits.h"
+
 #include "ui_credits.h"
 
 Credits::Credits(QWidget *parent)
-    : QDialog(parent), ui(new Ui::Credits),
+    : QDialog(parent),
+      ui(new Ui::Credits),
       manager(FinanceManager::getInstance()) {
   ui->setupUi(this);
   QPixmap pix(":/resources/img/logo.png");

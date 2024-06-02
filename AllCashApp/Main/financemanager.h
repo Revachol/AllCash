@@ -8,7 +8,7 @@
 class FinanceManager : public QObject {
   Q_OBJECT
 
-public:
+ public:
   static FinanceManager &getInstance();
 
   QString getAccountNumber() const;
@@ -76,10 +76,10 @@ public:
   double getTotalSum() const;
   void setTotalSum(double value);
 
-signals:
+ signals:
   void dataChanged();
 
-private:
+ private:
   FinanceManager();
   FinanceManager(const FinanceManager &) = delete;
   FinanceManager &operator=(const FinanceManager &) = delete;
@@ -112,4 +112,4 @@ private:
   double depositTotal;
 };
 
-#endif // FINANCEMANAGER_H
+#endif  // FINANCEMANAGER_H

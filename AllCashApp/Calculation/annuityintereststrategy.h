@@ -1,11 +1,12 @@
 #ifndef ANNUITYINTERESTSTRATEGY_H
 #define ANNUITYINTERESTSTRATEGY_H
 
-#include "calculationstrategy.h"
 #include <cmath>
 
+#include "calculationstrategy.h"
+
 class AnnuityInterestStrategy : public CalculationStrategy {
-public:
+ public:
   double calculate(double loanAmount, double annualRate,
                    int termMonths) override {
     double monthlyRate = annualRate / 12 / 100;
@@ -13,4 +14,4 @@ public:
   }
 };
 
-#endif // ANNUITYINTERESTSTRATEGY_H
+#endif  // ANNUITYINTERESTSTRATEGY_H

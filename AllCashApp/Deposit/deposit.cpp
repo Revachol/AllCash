@@ -1,9 +1,11 @@
 #include "deposit.h"
+
 #include "Main/financemanager.h"
 #include "ui_deposit.h"
 
 Deposit::Deposit(QWidget *parent)
-    : QDialog(parent), ui(new Ui::Deposit),
+    : QDialog(parent),
+      ui(new Ui::Deposit),
       manager(FinanceManager::getInstance()) {
   ui->setupUi(this);
   QPixmap pix(":/resources/img/logo.png");

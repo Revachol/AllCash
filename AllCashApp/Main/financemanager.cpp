@@ -6,8 +6,12 @@ FinanceManager &FinanceManager::getInstance() {
 }
 
 FinanceManager::FinanceManager()
-    : accountBalance(0.0), creditOpened(false), depositOpened(false),
-      creditAmount(0.0), interestRate(0.0), term(0) {}
+    : accountBalance(0.0),
+      creditOpened(false),
+      depositOpened(false),
+      creditAmount(0.0),
+      interestRate(0.0),
+      term(0) {}
 
 // Методы для управления счетами
 QString FinanceManager::getAccountNumber() const { return accountNumber; }

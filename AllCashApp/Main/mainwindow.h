@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QMainWindow>
+
 #include "../Account/account.h"
 #include "../Calculation/annuityintereststrategy.h"
 #include "../Calculation/depositcalculationstrategy.h"
@@ -9,7 +11,6 @@
 #include "../Deposit/deposit.h"
 #include "../Deposit/opendeposit.h"
 #include "../FactoryMethod/factorymethod.h"
-#include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,11 +21,11 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
-public:
+ public:
   MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-private slots:
+ private slots:
   void on_pushButton_clicked();
   void on_pushButtonCredits_clicked();
   void showMainWindow();
@@ -34,7 +35,7 @@ private slots:
   void on_pushButton_2_clicked();
   void on_pushButton_3_clicked();
 
-private:
+ private:
   Ui::MainWindow *ui;
   Account *accountWindow;
   Credits *creditsWindow;
@@ -44,4 +45,4 @@ private:
   FactoryMethod *factory;
 };
 
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H

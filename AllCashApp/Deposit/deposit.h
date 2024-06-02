@@ -1,10 +1,11 @@
 #ifndef DEPOSIT_H
 #define DEPOSIT_H
 
-#include "../Main/financemanager.h"
 #include <QDate>
 #include <QDialog>
 #include <QString>
+
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class Deposit;
@@ -13,23 +14,23 @@ class Deposit;
 class Deposit : public QDialog {
   Q_OBJECT
 
-public:
+ public:
   explicit Deposit(QWidget *parent = nullptr);
   ~Deposit();
 
-signals:
+ signals:
   void depositWindowClosed();
 
-private slots:
+ private slots:
   void updateView();
   void on_backButton_clicked();
 
-protected:
+ protected:
   void closeEvent(QCloseEvent *event) override;
 
-private:
+ private:
   Ui::Deposit *ui;
   FinanceManager &manager;
 };
 
-#endif // Deposit
+#endif  // Deposit

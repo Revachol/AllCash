@@ -4,7 +4,7 @@
 #include <QWidget>
 
 class ViewFactory {
-public:
+ public:
   virtual Account *createAccount(QWidget *parent) = 0;
   virtual Credits *createCredits(QWidget *parent) = 0;
   virtual OpenCredit *createOpenCredit(QWidget *parent) = 0;
@@ -13,4 +13,4 @@ public:
   virtual ~ViewFactory() = default;
 };
 
-#endif // VIEWFACTORY_H
+#endif  // VIEWFACTORY_H

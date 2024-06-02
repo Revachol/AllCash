@@ -1,9 +1,10 @@
 #ifndef CREDITS_H
 #define CREDITS_H
 
-#include "../Main/financemanager.h"
 #include <QDate>
 #include <QDialog>
+
+#include "../Main/financemanager.h"
 
 namespace Ui {
 class Credits;
@@ -12,23 +13,23 @@ class Credits;
 class Credits : public QDialog {
   Q_OBJECT
 
-public:
+ public:
   explicit Credits(QWidget *parent = nullptr);
   ~Credits();
-  
-signals:
+
+ signals:
   void updateView();
   void creditsWindowClosed();
 
-private slots:
+ private slots:
   void on_backButton_clicked();
 
-protected:
+ protected:
   void closeEvent(QCloseEvent *event) override;
 
-private:
+ private:
   Ui::Credits *ui;
   FinanceManager &manager;
 };
 
-#endif // CREDITS_H
+#endif  // CREDITS_H

@@ -1,9 +1,11 @@
 #include "opencredit.h"
+
 #include "../Calculation/annuityintereststrategy.h"
 #include "ui_opencredit.h"
 
 OpenCredit::OpenCredit(QWidget *parent)
-    : QDialog(parent), ui(new Ui::OpenCredit),
+    : QDialog(parent),
+      ui(new Ui::OpenCredit),
       manager(FinanceManager::getInstance()),
       сalculationStrategy(new AnnuityInterestStrategy) {
   ui->setupUi(this);

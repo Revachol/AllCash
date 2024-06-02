@@ -1,9 +1,11 @@
 #include "opendeposit.h"
+
 #include "../Calculation/depositcalculationstrategy.h"
 #include "ui_opendeposit.h"
 
 OpenDeposit::OpenDeposit(QWidget *parent)
-    : QDialog(parent), ui(new Ui::OpenDeposit),
+    : QDialog(parent),
+      ui(new Ui::OpenDeposit),
       manager(FinanceManager::getInstance()),
       calculationStrategy(new DepositCalculationStrategy) {
   ui->setupUi(this);

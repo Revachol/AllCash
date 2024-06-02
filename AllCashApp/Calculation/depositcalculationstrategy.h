@@ -1,11 +1,12 @@
 #ifndef DEPOSITCALCULATIONSTRATEGY_H
 #define DEPOSITCALCULATIONSTRATEGY_H
 
-#include "calculationstrategy.h"
 #include <cmath>
 
+#include "calculationstrategy.h"
+
 class DepositCalculationStrategy : public CalculationStrategy {
-public:
+ public:
   double calculate(double initialAmount, double annualRate,
                    int termMonths) override {
     double monthlyRate = annualRate / 12 / 100;
@@ -13,4 +14,4 @@ public:
   }
 };
 
-#endif // DEPOSITCALCULATIONSTRATEGY_H
+#endif  // DEPOSITCALCULATIONSTRATEGY_H

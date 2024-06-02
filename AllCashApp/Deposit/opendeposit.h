@@ -1,9 +1,10 @@
 #ifndef OPENDEPOSIT_H
 #define OPENDEPOSIT_H
 
+#include <QDialog>
+
 #include "../Calculation/calculationstrategy.h"
 #include "../Main/financemanager.h"
-#include <QDialog>
 
 namespace Ui {
 class OpenDeposit;
@@ -12,29 +13,29 @@ class OpenDeposit;
 class OpenDeposit : public QDialog {
   Q_OBJECT
 
-public:
+ public:
   explicit OpenDeposit(QWidget *parent = nullptr);
   ~OpenDeposit();
 
   void setCalculationStrategy(CalculationStrategy *strategy);
 
-signals:
+ signals:
   void openDepositWindowClosed();
 
-private slots:
+ private slots:
   void on_backButton_clicked();
   void on_depositOpenButton_clicked();
 
-protected:
+ protected:
   void closeEvent(QCloseEvent *event) override;
 
-signals:
+ signals:
   void depositOpened();
 
-private:
+ private:
   Ui::OpenDeposit *ui;
   FinanceManager &manager;
   CalculationStrategy *calculationStrategy;
 };
 
-#endif // OPENDEPOSIT_H
+#endif  // OPENDEPOSIT_H

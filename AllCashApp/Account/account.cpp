@@ -1,8 +1,10 @@
 #include "account.h"
+
 #include "ui_account.h"
 
 Account::Account(QWidget *parent)
-    : QDialog(parent), ui(new Ui::Account),
+    : QDialog(parent),
+      ui(new Ui::Account),
       manager(FinanceManager::getInstance()) {
   ui->setupUi(this);
   QPixmap pix(":/resources/img/logo.png");

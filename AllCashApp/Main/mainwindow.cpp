@@ -1,12 +1,18 @@
 #include "mainwindow.h"
+
 #include "../FactoryMethod/factorymethod.h"
 #include "financemanager.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), accountWindow(nullptr),
-      creditsWindow(nullptr), depositWindow(nullptr), openCreditWindow(nullptr),
-      openDepositWindow(nullptr), factory(new FactoryMethod) {
+    : QMainWindow(parent),
+      ui(new Ui::MainWindow),
+      accountWindow(nullptr),
+      creditsWindow(nullptr),
+      depositWindow(nullptr),
+      openCreditWindow(nullptr),
+      openDepositWindow(nullptr),
+      factory(new FactoryMethod) {
   FinanceManager &fm = FinanceManager::getInstance();
   fm.setAccountNumber("123456789");
   fm.setAccountHolderName("Иван Иванов");
