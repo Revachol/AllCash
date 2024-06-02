@@ -1,42 +1,40 @@
 #ifndef OPENDEPOSIT_H
 #define OPENDEPOSIT_H
 
-#include <QDialog>
-#include "../Main/financemanager.h"
 #include "../Calculation/calculationstrategy.h"
+#include "../Main/financemanager.h"
+#include <QDialog>
 
 namespace Ui {
 class OpenDeposit;
 }
 
-class OpenDeposit : public QDialog
-{
-    Q_OBJECT
+class OpenDeposit : public QDialog {
+  Q_OBJECT
 
 public:
-    explicit OpenDeposit(QWidget *parent = nullptr);
-    ~OpenDeposit();
+  explicit OpenDeposit(QWidget *parent = nullptr);
+  ~OpenDeposit();
 
-    void setCalculationStrategy(CalculationStrategy *strategy);
+  void setCalculationStrategy(CalculationStrategy *strategy);
 
 signals:
-    void openDepositWindowClosed();
+  void openDepositWindowClosed();
 
 private slots:
-    void on_backButton_clicked();
-    void on_depositOpenButton_clicked();
+  void on_backButton_clicked();
+  void on_depositOpenButton_clicked();
 
 protected:
-    void closeEvent(QCloseEvent *event) override;
+  void closeEvent(QCloseEvent *event) override;
 
 signals:
-    void depositOpened();
+  void depositOpened();
 
 private:
-    Ui::OpenDeposit *ui;
-    FinanceManager &manager;
-    CalculationStrategy *calculationStrategy;
-
+  Ui::OpenDeposit *ui;
+  FinanceManager &manager;
+  CalculationStrategy *calculationStrategy;
 };
 
 #endif // OPENDEPOSIT_H

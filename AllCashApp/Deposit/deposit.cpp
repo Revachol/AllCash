@@ -1,52 +1,49 @@
 #include "deposit.h"
-#include "ui_deposit.h"
 #include "Main/financemanager.h"
+#include "ui_deposit.h"
 
-Deposit::Deposit(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::Deposit),
-    manager(FinanceManager::getInstance())
-{
-    ui->setupUi(this);
-    QPixmap pix(":/resources/img/logo.png");
-    int w = ui->logo->width();
-    int h = ui->logo->height();
+Deposit::Deposit(QWidget *parent)
+    : QDialog(parent), ui(new Ui::Deposit),
+      manager(FinanceManager::getInstance()) {
+  ui->setupUi(this);
+  QPixmap pix(":/resources/img/logo.png");
+  int w = ui->logo->width();
+  int h = ui->logo->height();
 
-    ui->logo->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
+  ui->logo->setPixmap(pix.scaled(w, h, Qt::KeepAspectRatio));
 
-    QPixmap bkgnd(":/resources/img/background.png");
-    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
-    QPalette palette;
-    palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);
+  QPixmap bkgnd(":/resources/img/background.png");
+  bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio);
+  QPalette palette;
+  palette.setBrush(QPalette::Window, bkgnd);
+  this->setPalette(palette);
 
-    connect(&manager, &FinanceManager::dataChanged, this, &Deposit::updateView);
-    updateView();
+  connect(&manager, &FinanceManager::dataChanged, this, &Deposit::updateView);
+  updateView();
 }
 
-Deposit::~Deposit()
-{
-    delete ui;
-}
+Deposit::~Deposit() { delete ui; }
 
 void Deposit::updateView() {
-    ui->depositSumLabel->setText(QString::number(manager.getDepositSum(), 'f', 0)+ " рублей");
-    ui->depositRateLabel->setText(QString::number(manager.getDepositRate())+ "%");
-    ui->depositTermLabel->setText(QString::number(manager.getDepositTerm())+ " лет");
-    ui->depositStartLabel->setText(manager.getDepositStartDate().toString());
-    ui->depositEndLabel->setText(manager.getDepositEndDate().toString());
-    ui->depositCheckLabel->setText(manager.getDepositCheck() ? "Yes" : "No");
-    ui->depositTotalSum->setText(QString::number(manager.getTotalSum(), 'f', 0)+ " рублей");
+  ui->depositSumLabel->setText(
+      QString::number(manager.getDepositSum(), 'f', 0) + " рублей");
+  ui->depositRateLabel->setText(QString::number(manager.getDepositRate()) +
+                                "%");
+  ui->depositTermLabel->setText(QString::number(manager.getDepositTerm()) +
+                                " лет");
+  ui->depositStartLabel->setText(manager.getDepositStartDate().toString());
+  ui->depositEndLabel->setText(manager.getDepositEndDate().toString());
+  ui->depositCheckLabel->setText(manager.getDepositCheck() ? "Yes" : "No");
+  ui->depositTotalSum->setText(QString::number(manager.getTotalSum(), 'f', 0) +
+                               " рублей");
 }
 
-void Deposit::closeEvent(QCloseEvent *event)
-{
-    emit depositWindowClosed();
-    QDialog::closeEvent(event);
+void Deposit::closeEvent(QCloseEvent *event) {
+  emit depositWindowClosed();
+  QDialog::closeEvent(event);
 }
 
-void Deposit::on_backButton_clicked()
-{
-    emit depositWindowClosed();
-    close();
+void Deposit::on_backButton_clicked() {
+  emit depositWindowClosed();
+  close();
 }
