@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "../Main/financemanager.h"
+#include "../Calculation/calculationstrategy.h"
 
 namespace Ui {
 class OpenCredit;
@@ -15,6 +16,7 @@ class OpenCredit : public QDialog
 public:
     explicit OpenCredit(QWidget *parent = nullptr);
     ~OpenCredit();
+    void setCalculationStrategy(CalculationStrategy *strategy);
 
 signals:
     void openCreditsWindowClosed();
@@ -35,6 +37,7 @@ signals:
 private:
     Ui::OpenCredit *ui;
     FinanceManager &manager;
+    CalculationStrategy *сalculationStrategy;
 };
 
 #endif // OPENCREDIT_H

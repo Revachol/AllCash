@@ -34,6 +34,7 @@ void Credits::updateView() {
     ui->termLabel->setText(QString::number(manager.getCreditTerm()) + " лет");
     ui->startDateLabel->setText(manager.getCreditStartDate().toString());
     ui->endDateLabel->setText(manager.getCreditEndDate().toString());
+    ui->monthlyPaymentLabel->setText(QString::number(manager.getMonthlyPayment(), 'f', 2) + " рублей");
 }
 
 void Credits::closeEvent(QCloseEvent *event)

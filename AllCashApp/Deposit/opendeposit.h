@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "../Main/financemanager.h"
+#include "../Calculation/calculationstrategy.h"
 
 namespace Ui {
 class OpenDeposit;
@@ -16,12 +17,12 @@ public:
     explicit OpenDeposit(QWidget *parent = nullptr);
     ~OpenDeposit();
 
+    void setCalculationStrategy(CalculationStrategy *strategy);
 
 signals:
     void openDepositWindowClosed();
 
 private slots:
-    void on_openDepositButton_clicked();
     void on_backButton_clicked();
     void on_depositOpenButton_clicked();
 
@@ -34,6 +35,8 @@ signals:
 private:
     Ui::OpenDeposit *ui;
     FinanceManager &manager;
+    CalculationStrategy *calculationStrategy;
+
 };
 
 #endif // OPENDEPOSIT_H

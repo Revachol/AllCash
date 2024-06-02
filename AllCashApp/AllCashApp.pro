@@ -27,7 +27,10 @@ HEADERS += \
     Credit/opencredit.h \
     Deposit/opendeposit.h \
     FactoryMethod/factorymethod.h \
-    FactoryMethod/viewfactory.h
+    FactoryMethod/viewfactory. \
+    Calculation/calculationstrategy.h \
+    Calculation/annuityintereststrategy.h \
+    Calculation/depositcalculationstrategy.h
 
 FORMS += \
     Account/account.ui \

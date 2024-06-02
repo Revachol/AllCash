@@ -49,6 +49,9 @@ public:
     QDate getCreditEndDate() const;
     void setCreditEndDate(const QDate &value);
 
+    double getMonthlyPayment() const;
+    void setMonthlyPayment(double value);
+
     //Депозит
     bool isDepositOpened() const;
     void setDepositOpened(bool value);
@@ -70,6 +73,9 @@ public:
 
     QDate getDepositEndDate() const;
     void setDepositEndDate(const QDate &value);
+
+    double getTotalSum() const;
+    void setTotalSum(double value);
 
 signals:
     void dataChanged();
@@ -94,6 +100,7 @@ private:
     int term;
     QDate startDate;
     QDate endDate;
+    double MonthPayment;
 
     //Данные вклада
     long long int depositSum;
@@ -102,6 +109,7 @@ private:
     bool non_refillable;
     QDate depositStartDate;
     QDate depositEndDate;
+    double depositTotal;
 };
 
 #endif // FINANCEMANAGER_H

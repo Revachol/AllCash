@@ -1,11 +1,12 @@
 #include "opendeposit.h"
 #include "ui_opendeposit.h"
-
+#include "../Calculation/depositcalculationstrategy.h"
 
 OpenDeposit::OpenDeposit(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OpenDeposit),
-    manager(FinanceManager::getInstance())
+    manager(FinanceManager::getInstance()),
+    calculationStrategy(new DepositCalculationStrategy)
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -24,7 +25,16 @@ OpenDeposit::OpenDeposit(QWidget *parent) :
 OpenDeposit::~OpenDeposit()
 {
     delete ui;
+    delete calculationStrategy;
 }
+
+void OpenDeposit::setCalculationStrategy(CalculationStrategy *strategy) {
+    if (calculationStrategy) {
+        delete calculationStrategy;
+    }
+    calculationStrategy = strategy;
+}
+
 
 void OpenDeposit::closeEvent(QCloseEvent *event)
 {
@@ -51,7 +61,10 @@ void OpenDeposit::on_depositOpenButton_clicked()
     manager.setDepositEndDate(QDate(2022 + depositTerm, 6, 1));
     manager.setDepositCheck(depositCheck);
     manager.setDepositOpened(true);
-
+    if (calculationStrategy) {
+        double totalSum = calculationStrategy->calculate(depositAmount, 12, depositTerm*12);
+        manager.setTotalSum(totalSum);
+    }
     close();
 }
 

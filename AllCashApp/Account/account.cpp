@@ -47,6 +47,6 @@ void Account::closeEvent(QCloseEvent *event)
 
 void Account::on_backButton_clicked()
 {
-    emit accountWindowClosed();  // Эмитируем сигнал при нажатии кнопки "Назад"
-    close();  // Закрываем окно Account
+    emit accountWindowClosed();
+    close();
 }

@@ -16,7 +16,6 @@ class Credits : public QDialog
 public:
     explicit Credits(QWidget *parent = nullptr);
     ~Credits();
-
 signals:
     void updateView();
     void creditsWindowClosed();

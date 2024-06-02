@@ -48,13 +48,10 @@ void MainWindow::on_pushButton_clicked()
 {
     hide();
 
-    // Создание окна Account
     accountWindow = factory->createAccount(this);
 
-    // Подключение сигнала закрытия окна Account к слоту для показа главного окна
     connect(accountWindow, &Account::accountWindowClosed, this, &MainWindow::showMainWindow);
 
-    // setCentralWidget(accountWindow);
     accountWindow->show();
 }
 
@@ -64,23 +61,18 @@ void MainWindow::on_pushButtonCredits_clicked()
     creditsWindow = new Credits(this);
     FinanceManager& fm = FinanceManager::getInstance();
     if (fm.isCreditOpened()) {
-
-        // Создание окна Credits
         creditsWindow = factory->createCredits(this);
 
-        // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
         connect(creditsWindow, &Credits::creditsWindowClosed, this, &MainWindow::showMainWindow);
 
-        // setCentralWidget(creditsWindow);
         creditsWindow->show();
     } else {
-        // Создание окна для открытия кредита
         openCreditWindow = factory->createOpenCredit(this);
 
-        // Подключение сигнала открытия кредита к слоту для показа окна Credits
         connect(openCreditWindow, &OpenCredit::openCreditsWindowClosed, this, &MainWindow::showCreditsWindow);
 
-        // setCentralWidget(creditsWindow);
+        openCreditWindow->setCalculationStrategy(new AnnuityInterestStrategy());
+
         openCreditWindow->show();
     }
 }
@@ -96,7 +88,6 @@ void MainWindow::showCreditsWindow()
 
     connect(creditsWindow, &Credits::creditsWindowClosed, this, &MainWindow::showMainWindow);
 
-    // setCentralWidget(creditsWindow);
     creditsWindow->show();
 }
 
@@ -130,23 +121,18 @@ void MainWindow::on_pushButton_3_clicked()
     hide();
     FinanceManager& fm = FinanceManager::getInstance();
     if (fm.isDepositOpened()) {
-
-        // Создание окна Credits
         depositWindow = factory->createDeposit(this);
 
-        // Подключение сигнала закрытия окна Credits к слоту для показа главного окна
         connect(depositWindow, &Deposit::depositWindowClosed, this, &MainWindow::showMainWindow);
 
-        setCentralWidget(depositWindow);
         depositWindow->show();
     } else {
-        // Создание окна для открытия кредита
         openDepositWindow = factory->createOpenDeposit(this);
 
-        // Подключение сигнала открытия кредита к слоту для показа окна Credits
         connect(openDepositWindow, &OpenDeposit::openDepositWindowClosed, this, &MainWindow::showDepositWindow);
 
-        // setCentralWidget(openDepositWindow);
+        openDepositWindow->setCalculationStrategy(new DepositCalculationStrategy());
+
         openDepositWindow->show();
     }
 }
@@ -162,6 +148,5 @@ void MainWindow::showDepositWindow()
 
     connect(depositWindow, &Deposit::depositWindowClosed, this, &MainWindow::showMainWindow);
 
-    // setCentralWidget(depositWindow);
     depositWindow->show();
 }

@@ -47,6 +47,9 @@ void FinanceManager::setCreditStartDate(const QDate &value) { startDate = value;
 QDate FinanceManager::getCreditEndDate() const { return endDate; }
 void FinanceManager::setCreditEndDate(const QDate &value) { endDate = value; emit dataChanged(); }
 
+double FinanceManager::getMonthlyPayment() const { return MonthPayment; }
+void FinanceManager::setMonthlyPayment(double value) { MonthPayment = value; emit dataChanged(); }
+
 
 //Депозит
 bool FinanceManager::isDepositOpened() const { return depositOpened; }
@@ -69,4 +72,9 @@ void FinanceManager::setDepositStartDate(const QDate &value) { depositStartDate 
 
 QDate FinanceManager::getDepositEndDate() const{ return depositEndDate; }
 void FinanceManager::setDepositEndDate(const QDate &value) { depositEndDate = value; emit dataChanged(); }
+
+
+double FinanceManager::getTotalSum() const { return depositTotal; }
+void FinanceManager::setTotalSum(double value) { depositTotal = value; emit dataChanged(); }
+
 

@@ -8,6 +8,8 @@
 #include "../Credit/opencredit.h"
 #include "../Deposit/opendeposit.h"
 #include "../FactoryMethod/factorymethod.h"
+#include "../Calculation/annuityintereststrategy.h"
+#include "../Calculation/depositcalculationstrategy.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,8 +25,8 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void on_pushButtonCredits_clicked();  // Слот для кнопки открытия окна Credits
-    void showMainWindow();  // Слот для показа главного окна
+    void on_pushButtonCredits_clicked();
+    void showMainWindow();
     void showCreditsWindow();
     void showDepositWindow();
 

@@ -1,11 +1,13 @@
 #include "opencredit.h"
 #include "ui_opencredit.h"
+#include "../Calculation/annuityintereststrategy.h"
 
 
 OpenCredit::OpenCredit(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OpenCredit),
-    manager(FinanceManager::getInstance())
+    manager(FinanceManager::getInstance()),
+    сalculationStrategy(new AnnuityInterestStrategy)
 {
     ui->setupUi(this);
     QPixmap pix(":/resources/img/logo.png");
@@ -27,6 +29,14 @@ OpenCredit::OpenCredit(QWidget *parent) :
 OpenCredit::~OpenCredit()
 {
     delete ui;
+    delete сalculationStrategy;
+}
+
+void OpenCredit::setCalculationStrategy(CalculationStrategy *strategy) {
+    if (сalculationStrategy) {
+        delete сalculationStrategy;
+    }
+    сalculationStrategy = strategy;
 }
 
 void OpenCredit::updateView(){
@@ -60,6 +70,10 @@ void OpenCredit::on_openCreditButton_clicked()
     manager.setCreditStartDate(QDate(2022,6,1));
     manager.setCreditEndDate(QDate(2022 + creditTerm, 6, 1));
     manager.setCreditOpened(true);
+    if (сalculationStrategy) {
+        double monthlyPayment = сalculationStrategy->calculate(creditAmount, 3.5, creditTerm*12);
+        manager.setMonthlyPayment(monthlyPayment);
+    }
 
     close();
 }

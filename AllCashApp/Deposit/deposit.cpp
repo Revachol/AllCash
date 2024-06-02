@@ -30,12 +30,13 @@ Deposit::~Deposit()
 }
 
 void Deposit::updateView() {
-    ui->depositSumLabel->setText(QString::number(manager.getDepositSum())+ " рублей");
+    ui->depositSumLabel->setText(QString::number(manager.getDepositSum(), 'f', 0)+ " рублей");
     ui->depositRateLabel->setText(QString::number(manager.getDepositRate())+ "%");
     ui->depositTermLabel->setText(QString::number(manager.getDepositTerm())+ " лет");
     ui->depositStartLabel->setText(manager.getDepositStartDate().toString());
     ui->depositEndLabel->setText(manager.getDepositEndDate().toString());
     ui->depositCheckLabel->setText(manager.getDepositCheck() ? "Yes" : "No");
+    ui->depositTotalSum->setText(QString::number(manager.getTotalSum(), 'f', 0)+ " рублей");
 }
 
 void Deposit::closeEvent(QCloseEvent *event)
@@ -46,6 +47,6 @@ void Deposit::closeEvent(QCloseEvent *event)
 
 void Deposit::on_backButton_clicked()
 {
-    emit depositWindowClosed();  // Эмитируем сигнал при нажатии кнопки "Назад"
-    close();  // Закрываем окно Deposit
+    emit depositWindowClosed();
+    close();
 }
